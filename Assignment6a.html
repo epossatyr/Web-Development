@@ -1,0 +1,77 @@
+<!Doctype HTML>
+<html>
+<head>
+<title>Assignment 6</title>
+<script>
+    //generate the value
+    var ran = Math.ceil(Math.random()*100) + 1; //(0-99) + 1
+    var count = 0;
+    var guess = 0;
+    window.addEventListener("DOMContentLoaded", promptuser());
+    //prompt for a guess
+    function promptuser(){
+        guess = prompt("Guess between 1 and 100:", "1");
+        //validate entry of a value between 1 and 100
+        validateGuess();
+        if(guess < ran){
+            low();
+        }
+        else if(guess > ran){
+            high();
+        }
+        else if(guess == ran){
+            equal();
+        }
+    }
+    function low(){
+        count++;
+        alert("Guess too low");
+        document.writeln("You guessed "+ guess +".");
+        promptuser();
+    }
+    function high(){
+        alert("Guess is too high");
+        document.writeln("You guessed "+ guess +".");
+        count++;
+        promptuser();
+    }
+    function equal(){
+        alert("Correct");
+        count++;
+        document.writeln("You guessed the number "+ ran + " in " + count + " tries.");
+    }
+    function validateGuess(){
+        if(guess > 0 && guess < 101){
+            return;
+        }
+        else{
+            //ignore and re-prompt
+            promptuser();
+        }
+
+    }
+    // function print(){
+    //     for(var i =0; i < count; i++)
+    //         document.writeln("You guessed "+ guess +".");
+    // }
+        //prompt again if failed
+    //post guess on page
+
+    
+</script>
+<style>
+    body{
+        background-color: purple;
+    }
+#guess{
+    margin: 2px;
+    border-color: 2px solid white;
+    color: black;
+}
+</style>
+</head>
+<body>
+    <span id=guess>    </span>
+    <span id=gameover>Press F5 to play again.</span>
+</body>
+</html>

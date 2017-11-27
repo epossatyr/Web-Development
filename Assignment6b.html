@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Number guess</title>
+        <script>
+         var ran = Math.ceil(Math.random()*100) + 1; //(0-99) + 1
+         var count = 0;
+         var guess = 0;
+         window.addEventListener("DOMContentLoaded", function() {
+             document.f1.btn1.addEventListener("click", guessVal);
+            });
+        function guessVal(){
+        guess = document.getElementById("guess").value;
+        //validate entry of a value between 1 and 100
+        validateGuess();
+        if(guess < ran){
+            low();
+        }
+        else if(guess > ran){
+            high();
+        }
+        else if(guess == ran){
+            equal();
+        }
+    }
+    function low(){
+        count++;
+        document.getElementById('area1').value += "You guessed "+ guess +". Try higher.\r\n";
+        
+    }
+    function high(){
+        document.getElementById("area1").value += "You guessed "+ guess +". Try lower.\r\n";
+        count++;
+        
+    }
+    function equal(){
+        count++;
+        document.getElementById("area1").value +="You guessed the number "+ ran + " in " + count + " tries.\r\n";
+        document.getElementById("area1").value += "Press F5 to play again.\r\n";
+        //disable button
+        document.f1.btn1.disabled = true;
+    }
+    function validateGuess(){
+        if(guess > 0 && guess < 101){
+            return;
+        }
+        else{
+            alert("Not a valid entry. Try again.");
+        }
+    }
+            
+        </script>
+        <style>
+            body{
+                background-color: purple;
+            }
+            #g{
+                color: black;
+                font-size: 22pt;
+            }
+        </style>
+    </head>
+<body>
+<form name="f1" id="f1">
+<label for="guess" id="g"><b>Your Guess: </b></label>
+<input type="text" name="guess" id="guess"/> <input type="button" name="btn1" value="Guess" /><br><br>
+<textarea rows=10 cols=50 id="area1"></textarea>
+</form>
+</body>
+</html>
